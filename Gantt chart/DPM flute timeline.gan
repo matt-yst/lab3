@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="DPM Project Team" company="McGill University " webLink="http://" view-date="2026-02-06" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="DPM Project Team" company="McGill University " webLink="http://" view-date="2026-01-31" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="en_US">
     <description/>
-    <view zooming-state="default:2" id="gantt-chart">
+    <view zooming-state="default:0" id="gantt-chart">
         <field id="tpd3" name="Name" width="200" order="0"/>
         <field id="tpd4" name="Begin date" width="75" order="1"/>
         <field id="tpd5" name="End date" width="75" order="2"/>
@@ -20,7 +20,7 @@
             <day-type id="0"/>
             <day-type id="1"/>
             <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
-            <only-show-weekends value="false"/>
+            <only-show-weekends value="true"/>
             <overriden-day-types/>
             <days/>
         </day-types>
@@ -38,14 +38,36 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="2" uid="dcf465f701d544eeb2c4df3255a1dea8" name="Hardware setup" meeting="false" start="2026-02-09" duration="1" complete="0" expand="true"/>
-        <task id="4" uid="8c770fefdefc400f9177902c3eb24c61" name="Port mapping" meeting="false" start="2026-02-09" duration="1" complete="0" expand="true"/>
-        <task id="5" uid="1c5ce0e04b4745dcb756cefe11c00c85" name="Motor code" meeting="false" start="2026-02-09" duration="1" complete="0" expand="true"/>
-        <task id="6" uid="962a6da5fe0f4cdf9f0aef1e051e61f3" name="Hardware first draft" meeting="true" start="2026-02-13" duration="0" complete="0" expand="true"/>
-        <task id="7" uid="79d7bca1327a4561bff643e5be592f72" name="Reset defaut software" meeting="false" start="2026-02-10" duration="3" complete="0" expand="true"/>
-        <task id="8" uid="ee595c21dc94401cbb4a9276f93a3f5f" name="Flute setup software" meeting="false" start="2026-02-10" duration="3" complete="0" expand="true"/>
+        <task id="17" uid="23dc28bf9820461e84bbd7e9f20d7b9f" name="Hardware" meeting="false" start="2026-02-09" duration="1" complete="0" expand="true">
+            <task id="2" uid="dcf465f701d544eeb2c4df3255a1dea8" name="Hardware setup" meeting="false" start="2026-02-09" duration="1" complete="0" expand="true">
+                <depend id="11" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="4" uid="8c770fefdefc400f9177902c3eb24c61" name="Port mapping" meeting="false" start="2026-02-09" duration="1" complete="0" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="5" uid="1c5ce0e04b4745dcb756cefe11c00c85" name="Motor code" meeting="false" start="2026-02-09" duration="1" complete="0" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="12" uid="16ece1981b404dc0959bff81c64a2e5a" name="Pi Github setup" meeting="false" start="2026-02-09" duration="3" complete="0" expand="true"/>
+        <task id="16" uid="9881269e5ffb45cdbcbd5e7cad687a8a" name="Setup state software" meeting="false" start="2026-02-10" duration="3" complete="0" expand="true">
+            <task id="7" uid="79d7bca1327a4561bff643e5be592f72" name="Reset defaut software" meeting="false" start="2026-02-10" duration="3" complete="0" expand="true">
+                <depend id="11" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="8" uid="ee595c21dc94401cbb4a9276f93a3f5f" name="Flute setup software" meeting="false" start="2026-02-10" duration="3" complete="0" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+        </task>
         <task id="9" uid="edc27ab2c0a748c2be4b200e73700f22" name="Drum setup software" meeting="false" start="2026-02-10" duration="3" complete="0" expand="true"/>
-        <task id="10" uid="ab11c29bf4234ad289a83909c6f1141b" name="Flute setup &amp; hardware test" meeting="true" start="2026-02-13" duration="0" complete="0" expand="true"/>
+        <task id="11" uid="9de4b71084da4f578e2c62bed9077d33" name="Initial test (hardware &amp; software)" meeting="false" start="2026-02-13" duration="1" complete="0" expand="true">
+            <depend id="6" type="2" difference="0" hardness="Strong"/>
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="6" uid="962a6da5fe0f4cdf9f0aef1e051e61f3" name="Hardware first draft" meeting="true" start="2026-02-14" duration="0" complete="0" expand="true"/>
+        <task id="10" uid="ab11c29bf4234ad289a83909c6f1141b" name="Flute setup software test" meeting="true" start="2026-02-14" duration="0" complete="0" expand="true"/>
+        <task id="13" uid="26b9be982ab54c07849452d6103861c1" name="Note output mapping" meeting="false" start="2026-02-16" duration="2" complete="0" expand="true"/>
+        <task id="14" uid="06674e853443446dac718b2cd57fc52e" name="User setup state" meeting="false" start="2026-02-16" duration="2" complete="0" expand="true"/>
+        <task id="15" uid="428173f2532f43699e4aa9afdf494e5e" name="Drum output software" meeting="false" start="2026-02-16" duration="2" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
