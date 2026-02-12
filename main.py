@@ -15,6 +15,7 @@ if __name__ == "__main__":
                 
             case "DT":
                 #drum toggle
+                #test push 
             case "N1":
                 #note 1
             case "N2":
