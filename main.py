@@ -6,6 +6,10 @@ def read():
     # Reads all sensor input data, output string
     return output
 
+motor = Motor("A")
+motor.set_power(100) # 100% power
+motor.set_dps(90) # 90 deg/sec
+
 if __name__ == "__main__":
     while True:
         out = read()
@@ -15,7 +19,8 @@ if __name__ == "__main__":
                 
             case "DT":
                 #drum toggle
-                #test push 
+                motor.set_position(180) # Rotate 180 degrees
+                motor.set_position(0)   # Rotate back to 0 degrees
             case "N1":
                 #note 1
             case "N2":
