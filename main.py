@@ -55,10 +55,8 @@ def read():
 
 def main() :
     while True:
-        out = "e"
-        print(out)
-        match out:
-            case "ES":
+        out = read()
+        if (out == "ES"):
                 for note in NOTES:
                     note.stop()
                 # if drumPlaying = true:
@@ -67,26 +65,26 @@ def main() :
                 print("emergency stop omg")
                 # emergency stop
 
-            case "DT":
+        elif(out == "ES"):
                 print("drum toggle omg")
                 # drum toggle
-            case "N1":
+        elif(out == "N1"):
                 NOTE1.play()
                 NOTE1.wait_done()
                 # note 1, C6
-            case "N2":
+        elif(out == "N2"):
                 NOTE2.play()
                 NOTE2.wait_done()
                 # note 2, A6
-            case "N3":
+        elif(out == "N2"):
                 NOTE3.play()
                 NOTE3.wait_done()
                 # note 3, E6
-            case "N4":
+        elif(out == "N4"):
                 NOTE4.play()
                 NOTE4.wait_done()
                 # note 4, G6
-            case _:
+        else:
                 print("DONNNNNN'T CAREEEEE, WHERE'S RICK?!?")
                 # don't cares :P
                 pass
