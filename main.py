@@ -1,18 +1,21 @@
-import collect_color_sensor_data
-import collect_us_sensor_data
-import touch_sensor
+# import collect_color_sensor_data
+# import collect_us_sensor_data
+# import touch_sensor
 from utils import sound
 from utils.brick import TouchSensor, wait_ready_sensors
 
 
 # -------------------- CONSTANTS --------------------
 US_LOWER_BOUND = 3
-US_UPPER_BOUND = 3
+US_UPPER_BOUND = 15
 
 NOTE1 = sound.Sound(duration=1, pitch="C6", volume=100)
 NOTE2 = sound.Sound(duration=1, pitch="A6", volume=100)
 NOTE3 = sound.Sound(duration=1, pitch="E6", volume=100)
 NOTE4 = sound.Sound(duration=1, pitch="G6", volume=100)
+
+TS1 = TouchSensor(1)
+TS2 = TouchSensor(2)
 
 NOTES = [NOTE1, NOTE2, NOTE3, NOTE4]
 
@@ -30,17 +33,17 @@ def read():
     
     us_data = US_SENSOR.get_value()
 
-    if us_in_range(us_data) and not touch1.is_pressed() and touch2.is_pressed():
+    if us_in_range(us_data) and not TS1.is_pressed() and TS2.is_pressed():
         output = "ES"
-    elif not us_in_range(us_data) and not touch1.is_pressed() and touch2.is_pressed():
+    elif not us_in_range(us_data) and not TS1.is_pressed() and TS2.is_pressed():
         output = "DT"
-    elif us_in_range(us_data) and not touch1.is_pressed() and touch2.is_pressed():
+    elif us_in_range(us_data) and not TS1.is_pressed() and TS2.is_pressed():
         output = "N1"
-    elif not us_in_range(us_data) and touch1.is_pressed() and not touch2.is_pressed():
+    elif not us_in_range(us_data) and TS1.is_pressed() and not TS2.is_pressed():
         output = "N2"
-    elif us_in_range(us_data) and touch1.is_pressed() and not touch2.is_pressed():
+    elif us_in_range(us_data) and TS1.is_pressed() and not TS2.is_pressed():
         output = "N3"  
-    elif not us_in_range(us_data) and touch1.is_pressed() and touch2.is_pressed():
+    elif not us_in_range(us_data) and TS1.is_pressed() and TS2.is_pressed():
         output = "N4"
     else:
         output = "None"
@@ -50,9 +53,10 @@ def read():
 
 # -------------------- MAIN LOOP --------------------
 
-if __name__ == "__main__":
+def main() :
     while True:
-        out = read()
+        out = "e"
+        print(out)
         match out:
             case "ES":
                 for note in NOTES:
@@ -86,3 +90,7 @@ if __name__ == "__main__":
                 print("DONNNNNN'T CAREEEEE, WHERE'S RICK?!?")
                 # don't cares :P
                 pass
+
+if __name__ == "__main__":
+    main()
+    
