@@ -3,7 +3,6 @@ from utils.brick import TouchSensor, Motor, EV3UltrasonicSensor, wait_ready_sens
 import time
 
 # -------------------- SENSORS --------------------
-print("YO")
 
 # Sensors
 TS1 = TouchSensor(1)
@@ -22,32 +21,33 @@ NOTE2 = sound.Sound(duration=0.2, pitch="A6", volume=100)
 NOTE3 = sound.Sound(duration=0.2, pitch="E6", volume=100)
 NOTE4 = sound.Sound(duration=0.2, pitch="G6", volume=100)
 
-ts1_on = False
-ts2_on = False
-us_on = False
-
-print("YO")
-
-
 # -------------------- FUNCTIONS --------------------
-def checkSensorsStatus():
+
+
+
+# -------------------- MAIN LOOP --------------------
+while (True):
+    # Finding all the sensor startes
     ts1_on = TS1.is_pressed()
     ts2_on = TS2.is_pressed()
     
     if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
             us_on = True
 
-print("YO")
-
-# -------------------- MAIN LOOP --------------------
-while (True):
-    print("works?")
-    checkSensorsStatus()
-    print("TS1: ", ts1_on)
-    print("TS1: ", TS1.is_pressed())
-    print("TS2: ", ts2_on)
-    print("US: ", us_on)
-    print("---------------")
+    if (not ts1_on and not ts2_on and us_on):
+          print("Option 1")
+    elif (not ts1_on and ts2_on and not us_on):
+          print("Option 2")
+    elif (not ts1_on and ts2_on and us_on):
+          print("Option 3")
+    elif (ts1_on and not ts2_on and not us_on):
+          print("Option 4")      
+    elif (ts1_on and not ts2_on and us_on):
+        print("Option 5")
+    elif (ts1_on and ts2_on and not us_on):
+        print("Option 6")         
+    elif (not ts1_on and not ts2_on and us_on):
+        print("Option 7")        
 
 
 
