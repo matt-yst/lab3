@@ -2,20 +2,22 @@
 # import collect_us_sensor_data
 # import touch_sensor
 from utils import sound
-from utils.brick import TouchSensor, wait_ready_sensors
-
+from utils.brick import TouchSensor, EV3UltrasonicSensor, wait_ready_sensors, reset_brick
 
 # -------------------- CONSTANTS --------------------
 US_LOWER_BOUND = 3
 US_UPPER_BOUND = 15
 
-NOTE1 = sound.Sound(duration=1, pitch="C6", volume=100)
-NOTE2 = sound.Sound(duration=1, pitch="A6", volume=100)
-NOTE3 = sound.Sound(duration=1, pitch="E6", volume=100)
-NOTE4 = sound.Sound(duration=1, pitch="G6", volume=100)
+NOTE1 = sound.Sound(duration=0.2, pitch="C6", volume=100)
+NOTE2 = sound.Sound(duration=0.2, pitch="A6", volume=100)
+NOTE3 = sound.Sound(duration=0.2, pitch="E6", volume=100)
+NOTE4 = sound.Sound(duration=0.2, pitch="G6", volume=100)
+
 
 TS1 = TouchSensor(1)
 TS2 = TouchSensor(2)
+
+US = EV3UltrasonicSensor(4)
 
 NOTES = [NOTE1, NOTE2, NOTE3, NOTE4]
 
@@ -23,6 +25,7 @@ NOTES = [NOTE1, NOTE2, NOTE3, NOTE4]
 ## -------------------- FUNCTIONS --------------------
 
 def us_in_range(data):
+    data = 4
     if data < US_UPPER_BOUND and data > US_LOWER_BOUND:
         return True
     else:
@@ -30,8 +33,7 @@ def us_in_range(data):
     
 # Reads all sensor input data, output string
 def read():
-    
-    us_data = US_SENSOR.get_value()
+    us_data = US.get_value()
 
     if us_in_range(us_data) and not TS1.is_pressed() and TS2.is_pressed():
         output = "ES"
@@ -54,6 +56,7 @@ def read():
 # -------------------- MAIN LOOP --------------------
 
 def main() :
+    i = 1
     while True:
         out = read()
         if (out == "ES"):
@@ -85,7 +88,6 @@ def main() :
                 NOTE4.wait_done()
                 # note 4, G6
         else:
-                print("DONNNNNN'T CAREEEEE, WHERE'S RICK?!?")
                 # don't cares :P
                 pass
 
