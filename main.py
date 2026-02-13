@@ -3,6 +3,7 @@ from utils.brick import TouchSensor, Motor, EV3UltrasonicSensor, wait_ready_sens
 import time
 
 # -------------------- SENSORS --------------------
+print("YO")
 
 # Sensors
 TS1 = TouchSensor(1)
@@ -10,7 +11,7 @@ TS2 = TouchSensor(2)
 US = EV3UltrasonicSensor(3)
 
 #  Make sure that all of our sensors are ready
-wait_ready_sensors()
+# wait_ready_sensors()
 
 
 # -------------------- CONSTANTS AND VARIABLES --------------------
@@ -25,19 +26,25 @@ ts1_on = False
 ts2_on = False
 us_on = False
 
+print("YO")
+
+
 # -------------------- FUNCTIONS --------------------
 def checkSensorsStatus():
     ts1_on = TS1.is_pressed()
     ts2_on = TS2.is_pressed()
     
-    if (5.0 < US.get_cm() < 20.0):
-        us_on = True
+    if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
+            us_on = True
 
+print("YO")
 
 # -------------------- MAIN LOOP --------------------
 while (True):
+    print("works?")
     checkSensorsStatus()
     print("TS1: ", ts1_on)
+    print("TS1: ", TS1.is_pressed())
     print("TS2: ", ts2_on)
     print("US: ", us_on)
     print("---------------")
