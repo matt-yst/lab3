@@ -62,13 +62,11 @@ def main() :
         if (out == "ES"):
                 for note in NOTES:
                     note.stop()
-                # if drumPlaying = true:
-                #     stopDrum()
-                # sleep(5)
+        
                 print("emergency stop omg")
                 # emergency stop
 
-        elif(out == "ES"):
+        elif(out == "DT"):
                 print("drum toggle omg")
                 # drum toggle
         elif(out == "N1"):
