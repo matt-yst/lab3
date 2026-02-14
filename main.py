@@ -51,43 +51,51 @@ while (True):
     time.sleep(0.05)
 
     playDrum()
+
+    if (ts1_on and ts2_on and not us_on):
+            # Emergency Stop
+            print("Emergency Stop")
+            emergency_on = not emergency_on
+
+
+    while (emergency_off):
+
+        if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
+            us_on = True
+        else:
+            us_on = False
+
+        if (not ts1_on and ts2_on and not us_on):
+            # Note 1 plays
+            NOTE1.play()
+            NOTE1.wait_done()
+
+        elif (not ts1_on and ts2_on and us_on):
+            # Note 2 plays
+            NOTE2.play()
+            NOTE2.wait_done()   
+
+        elif (ts1_on and not ts2_on and not us_on):
+            # Note 3 plays
+            print("Note 3")
+            NOTE3.play()
+            NOTE3.wait_done()  
     
-    if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
-        us_on = True
-    else:
-        us_on = False
+        elif (ts1_on and not ts2_on and us_on):
+            # Note 4 plays
+            print("Note 4")
+            NOTE4.play()
+            NOTE4.wait_done()    
+    
+        elif (ts1_on and ts2_on and not us_on):
+            # Emergency Stop
+            print("Emergency Stop")
+            emergency_on = not emergency_on
 
-    if (not ts1_on and ts2_on and not us_on):
-        # Note 1 plays
-        NOTE1.play()
-        NOTE1.wait_done()
-
-    elif (not ts1_on and ts2_on and us_on):
-        # Note 2 plays
-        NOTE2.play()
-        NOTE2.wait_done()   
-
-    elif (ts1_on and not ts2_on and not us_on):
-        # Note 3 plays
-        print("Note 3")
-        NOTE3.play()
-        NOTE3.wait_done()  
-   
-    elif (ts1_on and not ts2_on and us_on):
-        # Note 4 plays
-        print("Note 4")
-        NOTE4.play()
-        NOTE4.wait_done()    
-   
-    elif (ts1_on and ts2_on and not us_on):
-        # Emergency Stop
-        print("Emergency Stop")
-        drum_on = False
-
-    elif (ts1_on and ts2_on and us_on):
-        # Drum toggle
-        print("Drum Toggle")
-        drum_on = True
+        elif (ts1_on and ts2_on and us_on):
+            # Drum toggle
+            print("Drum Toggle")
+            drum_on = not drum_on
     
     time.sleep(0.07)
         
