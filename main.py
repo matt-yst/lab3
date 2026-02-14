@@ -82,11 +82,6 @@ def notes():
             is_us_on = True
         else:
             is_us_on = False
-
-        if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
-            is_us_on = True
-        else:
-            is_us_on = False
             
         
         if (not is_ts1_on and not is_ts2_on and is_us_on):
