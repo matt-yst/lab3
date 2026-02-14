@@ -53,39 +53,33 @@ while (True):
     if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
         us_on = True
 
-    if (not ts1_on and not ts2_on and us_on):
-        # Emergency Stop 
-        print("Option 1")
-        drum_on = False
-
-
-    elif (not ts1_on and ts2_on and not us_on):
-        # Drum toggle
-        print("Option 2")
-        drum_on = True
-
-    elif (not ts1_on and ts2_on and us_on):
+    if (not ts1_on and ts2_on and not us_on):
         # Note 1 plays
         NOTE1.play()
         NOTE1.wait_done()
 
-    elif (ts1_on and not ts2_on and not us_on):
+    elif (not ts1_on and ts2_on and us_on):
         # Note 2 plays
         NOTE2.play()
         NOTE2.wait_done()   
-   
-    elif (ts1_on and not ts2_on and us_on):
+
+    elif (ts1_on and not ts2_on and not us_on):
         # Note 3 plays
         NOTE3.play()
-        NOTE3.wait_done()
+        NOTE3.wait_done()  
+   
+    elif (ts1_on and not ts2_on and us_on):
+        # Note 4 plays
+        NOTE4.play()
+        NOTE4.wait_done()    
    
     elif (ts1_on and ts2_on and not us_on):
-         # Note 4 plays
-        NOTE4.play()
-        NOTE4.wait_done()         
+        # Emergency Stop
+        drum_on = False         
 
-
-
+    elif (ts1_on and ts2_on and us_on):
+        # Drum toggle
+        drum_on = True
 
 
 
