@@ -30,13 +30,13 @@ is_emergency = False
 
 # -------------------- FUNCTIONS --------------------
 
-def playDrum():
-    if is_drum_on:
-        MOTOR.set_position(0)
-        time.sleep(0.25)
-        MOTOR.set_position(-110)
-        time.sleep(0.25)
-        
+# def playDrum():
+#     if is_drum_on:
+#         MOTOR.set_position(0)
+#         time.sleep(0.25)
+#         MOTOR.set_position(-110)
+#         time.sleep(0.25)
+#         
 def checkSensors():
     # Finding all the sensor startes
     ts2_on = TS2.is_pressed()
@@ -50,17 +50,21 @@ def checkSensors():
         us_on = False
 
 def drum():
+    
+    is_drum_on = False;
+    
     while (True):
         
         is_ts2_on = TS2.is_pressed()
         time.sleep(0.07)
         is_ts1_on = TS1.is_pressed()
         time.sleep(0.05)
-
+        
         if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
             is_us_on = True
         else:
             is_us_on = False
+        
 
         # Check if sensor conditions are met for drumming
         if (is_ts1_on and is_ts2_on and is_us_on):
@@ -68,6 +72,16 @@ def drum():
             print("Drum Toggle")
             is_drum_on = True
             print("isDrum on?: ", is_drum_on)
+        elif (not is_ts1_on and is_ts2_on and not is_us_on):
+            print("Emergency Stop")
+            is_drum_on = False
+            
+            
+        if is_drum_on:
+            MOTOR.set_position(-90)
+            time.sleep(0.25)
+            MOTOR.set_position(-210)
+            time.sleep(0.25)   
 
 
 def notes():
@@ -90,14 +104,14 @@ def notes():
             NOTE1.play()
             NOTE1.wait_done()
         
-        if (not is_ts1_on and is_ts2_on and not is_us_on):
-            # Emergency stop
-            print("Emergency Stop")
-            is_drum_on = False
-            isEmergency = not isEmergency
+        # if (not is_ts1_on and is_ts2_on and not is_us_on):
+        #    # Emergency stop
+        #    print("Emergency Stop")
+        #    is_drum_on = False
+        #    is_emergency = True
             
 
-        elif (not is_ts1_on and is_ts2_on and is_us_on):
+        if (not is_ts1_on and is_ts2_on and is_us_on):
             # Note 2 plays
             print("Note 2")
             NOTE2.play()
@@ -114,8 +128,6 @@ def notes():
             print("Note 4")
             NOTE4.play()
             NOTE4.wait_done()    
-
-        
 
 
 # -------------------- MAIN --------------------
