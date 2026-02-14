@@ -10,10 +10,6 @@ TS2 = TouchSensor(2)
 US = EV3UltrasonicSensor(3)
 MOTOR = Motor("D")
 
-# Make sure that all of our sensors are ready
-# wait_ready_sensors()
-# ^ Absolutely do not put the piece of code above lol
-
 MOTOR.set_limits(power=70)
 
 
