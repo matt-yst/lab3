@@ -20,15 +20,16 @@ MOTOR.set_limits(power=70)
 # -------------------- CONSTANTS AND VARIABLES --------------------
 
 # Notes
-NOTE1 = sound.Sound(duration=0.2, pitch="C6", volume=70)
-NOTE2 = sound.Sound(duration=0.2, pitch="A6", volume=70)
-NOTE3 = sound.Sound(duration=0.2, pitch="E6", volume=70)
-NOTE4 = sound.Sound(duration=0.2, pitch="G6", volume=70)
+NOTE1 = sound.Sound(duration=0.1, pitch="C6", volume=70)
+NOTE2 = sound.Sound(duration=0.1, pitch="A6", volume=70)
+NOTE3 = sound.Sound(duration=0.1, pitch="E6", volume=70)
+NOTE4 = sound.Sound(duration=0.1, pitch="G6", volume=70)
 
 ts1_on = False
 ts2_on = False
 us_on = False
 drum_on = False
+isEmergency = False
 
 # -------------------- FUNCTIONS --------------------
 
@@ -40,35 +41,68 @@ def playDrum():
         MOTOR.set_position(-110)
         #print(motor.get_position())
         time.sleep(0.25)
-
-
-# -------------------- MAIN LOOP --------------------
-while (True):
+        
+def checkSensors():
     # Finding all the sensor startes
     ts2_on = TS2.is_pressed()
     time.sleep(0.07)
     ts1_on = TS1.is_pressed()
     time.sleep(0.05)
+    
+    if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
+        us_on = True
+    else:
+        us_on = False
 
-    playDrum()
+
+
+# -------------------- MAIN LOOP --------------------
+while (True):
+    ts2_on = TS2.is_pressed()
+    time.sleep(0.07)
+    ts1_on = TS1.is_pressed()
+    time.sleep(0.05)
+    
+    if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
+        us_on = True
+    else:
+        us_on = False
+
 
     if (ts1_on and ts2_on and not us_on):
             # Emergency Stop
             print("Emergency Stop")
-            emergency_on = not emergency_on
+            isEmergency = not isEmergency
 
 
-    while (emergency_off):
+    while (not isEmergency):
+        ts2_on = TS2.is_pressed()
+        time.sleep(0.07)
+        ts1_on = TS1.is_pressed()
+        time.sleep(0.05)
 
+        
+        
         if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
             us_on = True
         else:
             us_on = False
-
-        if (not ts1_on and ts2_on and not us_on):
+            
+        
+        if (not ts1_on and not ts2_on and us_on):
             # Note 1 plays
             NOTE1.play()
             NOTE1.wait_done()
+        
+        if (not ts1_on and ts2_on and not us_on):
+            # Note 1 plays
+            # NOTE1.play()
+            # NOTE1.wait_done()
+            
+            print("Emergency Stop")
+            drum_on = False
+            isEmergency = not isEmergency
+            
 
         elif (not ts1_on and ts2_on and us_on):
             # Note 2 plays
@@ -87,15 +121,16 @@ while (True):
             NOTE4.play()
             NOTE4.wait_done()    
     
-        elif (ts1_on and ts2_on and not us_on):
+        #elif (ts1_on and ts2_on and not us_on):
             # Emergency Stop
-            print("Emergency Stop")
-            emergency_on = not emergency_on
+            # print("Emergency Stop")
+            # isEmergency = not isEmergency
 
         elif (ts1_on and ts2_on and us_on):
             # Drum toggle
             print("Drum Toggle")
-            drum_on = not drum_on
-    
-    time.sleep(0.07)
-        
+            drum_on = True
+            print("isDrum on?: ", drum_on)
+            
+        playDrum()
+            
