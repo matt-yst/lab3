@@ -11,7 +11,7 @@ TS2 = TouchSensor(2)
 US = EV3UltrasonicSensor(3)
 MOTOR = Motor("D")
 
-MOTOR.set_limits(power=70)
+MOTOR.set_limits(power=80)
 
 
 # -------------------- CONSTANTS AND VARIABLES --------------------
@@ -78,9 +78,9 @@ def drum():
             
             
         if is_drum_on:
-            MOTOR.set_position(-90)
+            MOTOR.set_position(-200)
             time.sleep(0.25)
-            MOTOR.set_position(-210)
+            MOTOR.set_position(-320)
             time.sleep(0.25)   
 
 
