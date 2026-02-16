@@ -97,12 +97,16 @@ def notes():
         else:
             is_us_on = False
             
-        
+        if (not is_ts1_on and is_ts2_on and not is_us_on):
+            print("Emergency stop - notes")
+            notes = [NOTE1, NOTE2, NOTE3, NOTE4]
+            for note in notes:
+                note.stop()
         if (not is_ts1_on and not is_ts2_on and is_us_on):
             # Note 1 plays
             print("Note 1")
             NOTE1.play()
-            NOTE1.wait_done()
+            # NOTE1.wait_done()
         
         # if (not is_ts1_on and is_ts2_on and not is_us_on):
         #    # Emergency stop
@@ -115,19 +119,19 @@ def notes():
             # Note 2 plays
             print("Note 2")
             NOTE2.play()
-            NOTE2.wait_done()   
+            # NOTE2.wait_done()
 
         elif (is_ts1_on and not is_ts2_on and not is_us_on):
             # Note 3 plays
             print("Note 3")
             NOTE3.play()
-            NOTE3.wait_done()  
+            # NOTE3.wait_done()
     
         elif (is_ts1_on and not is_ts2_on and is_us_on):
             # Note 4 plays
             print("Note 4")
             NOTE4.play()
-            NOTE4.wait_done()    
+            # NOTE4.wait_done()
 
 
 # -------------------- MAIN --------------------
