@@ -78,9 +78,9 @@ def drum():
             
             
         if is_drum_on:
-            MOTOR.set_position(-90)
+            MOTOR.set_position(-200)
             time.sleep(0.25)
-            MOTOR.set_position(-210)
+            MOTOR.set_position(-320)
             time.sleep(0.25)   
 
 
