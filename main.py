@@ -30,18 +30,6 @@ is_emergency = False
 
 # -------------------- FUNCTIONS --------------------
 
-# def checkSensors():
-#     # Finding all the sensor startes
-#     ts2_on = TS2.is_pressed()
-#     time.sleep(0.07) #delay to read simultaneous touch sensors
-#     ts1_on = TS1.is_pressed()
-#     time.sleep(0.05)
-    
-#     if (US.get_value() != None and 5.0 < US.get_value() < 20.0):
-#         us_on = True
-#     else:
-#         us_on = False
-
 def drum():
     
     is_drum_on = False;
