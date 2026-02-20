@@ -76,7 +76,9 @@ def notes():
             is_us_on = True
         else:
             is_us_on = False
-            
+
+        
+        #Emergency stop condition    
         if (not is_ts1_on and is_ts2_on and not is_us_on):
             print("Emergency stop - notes")
             notes = [NOTE1, NOTE2, NOTE3, NOTE4]
