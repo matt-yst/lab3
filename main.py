@@ -31,8 +31,7 @@ is_emergency = False
 # -------------------- FUNCTIONS --------------------
 
 def drum():
-    
-    is_drum_on = False;
+    is_drum_on = False
     
     while (True):
         
@@ -84,13 +83,6 @@ def notes():
             print("Note 1")
             NOTE1.play()
             NOTE1.wait_done()
-        
-        # if (not is_ts1_on and is_ts2_on and not is_us_on):
-        #    # Emergency stop
-        #    print("Emergency Stop")
-        #    is_drum_on = False
-        #    is_emergency = True
-            
 
         if (not is_ts1_on and is_ts2_on and is_us_on):
             # Note 2 plays
